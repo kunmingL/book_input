@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="">
+<mapper namespace="com.example.book_input.mapper.TproCharptMapper">
     <insert id="insertTProCharptList" parameterType="java.util.List">
         insert into t_pro_charpt
         (title,introduce,requirement,creators,root,root_ord,is_lock,finish,create_by,create_dat,l_update_dat,is_del)

@@ -1,6 +1,9 @@
 package com.example.book_input.entity;
 
 
+import lombok.Data;
+
+@Data
 public class TProCharpt {
 
   private long id;

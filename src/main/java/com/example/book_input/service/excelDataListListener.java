@@ -17,29 +17,32 @@ import java.util.Date;
 import java.util.List;
 
 
-
+@Service
 public class excelDataListListener extends AnalysisEventListener<ReadSctionData> {
 
-    @Autowired
-    private TproCharptMapper tproCharptMapper;
+
 
     private static final int BATCH_COUNT = 50;
 
     List<ReadSctionData> list = new ArrayList<ReadSctionData>(BATCH_COUNT);
 
+    @Autowired
     private ReadSctionData readSctionData;
 
+
+
+
+//    @Autowired
+//    private TproCharptMapper tproCharptMapper;
+
     public excelDataListListener(){
-        readSctionData = new ReadSctionData();
+
     }
 
     /**
      * 每一条数据解析都会来调用
      */
     @Override
-
-
-
     public void invoke(ReadSctionData readSctionData, AnalysisContext analysisContext) {
         System.out.println(JSON.toJSONString(readSctionData));
         list.add(readSctionData);
@@ -86,15 +89,8 @@ public class excelDataListListener extends AnalysisEventListener<ReadSctionData>
     private void saveData(){
         System.out.println(list.size()+"条数据，开始存储数据库！");
         List<TProCharpt> tProCharptList = transData();
+        InterfaceService interfaceService = new InterfaceService();
+        TproCharptMapper tproCharptMapper = interfaceService.returnInterface();
         tproCharptMapper.insertTProCharptList(tProCharptList);
     }
-
-   /* public static void main(String[] args) {
-        System.out.println(System.currentTimeMillis());
-        System.out.println(Calendar.getInstance().getTimeInMillis());
-        System.out.println(new Date().getTime());
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        System.out.println(timestamp);
-
-    }*/
 }
